@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Math & Systems Visualizations – JJ Vahedi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-alt: #141927;
+      --card: #181f30;
+      --accent: #4fd1c5;
+      --accent-soft: rgba(79, 209, 197, 0.15);
+      --text: #f7fafc;
+      --muted: #a0aec0;
+      --border: #2d3748;
+      --radius-xl: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.5);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at top, #1a2540, #050712 55%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+    }
+
+    header {
+      padding: 24px 26px 18px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(79, 209, 197, 0.12), transparent),
+        radial-gradient(circle at top left, rgba(129, 140, 248, 0.18), transparent),
+        #050816;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 32px;
+      position: sticky;
+      top: 16px;
+      backdrop-filter: blur(16px);
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.7rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 680px;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(79, 209, 197, 0.9);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    main {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin: 8px 2px;
+    }
+
+    .graph-card {
+      background: radial-gradient(circle at top, #1f2937, #050816 80%);
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .graph-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(79, 209, 197, 0.12), transparent 55%),
+        radial-gradient(circle at 110% 0%, rgba(129, 140, 248, 0.14), transparent 55%);
+      opacity: 0.8;
+      z-index: -1;
+    }
+
+    .graph-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .graph-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .graph-meta {
+      text-align: right;
+      font-size: 0.77rem;
+      color: var(--muted);
+    }
+
+    .graph-meta span {
+      display: block;
+    }
+
+    .graph-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      max-width: 800px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 420px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #020617;
+    }
+
+    .graph-footer {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .graph-footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .graph-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .tag-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 16px;
+      }
+      header {
+        position: static;
+      }
+      iframe {
+        height: 360px;
+      }
+      .graph-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .graph-meta {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="tagline">
+        <span class="tag-dot"></span>
+        Interactive math, systems, and AI visualizations
+      </div>
+      <h1>JJ Vahedi – Research & Modeling Playground</h1>
+      <p>
+        A collection of Desmos-based visual experiments exploring LLM systems,
+        entropy & diversity, dynamics, and other structures I’m thinking about.
+        Each graph is fully interactive – move sliders, drag points, and see how
+        the behavior changes.
+      </p>
+      <div class="pill-row">
+        <div class="pill">LLMs & context architecture</div>
+        <div class="pill">Applied math & PDE intuition</div>
+        <div class="pill">Entropy & diversity measures</div>
+        <div class="pill">Toy models & visual experiments</div>
+      </div>
+    </header>
+
+    <main>
+      <div class="section-label">Graphs</div>
+
+      <!-- 1) Your actual graph -->
+      <section id="llm-chunking" class="graph-card">
+        <div class="graph-header">
+          <div>
+            <div class="graph-title">
+              LLM Chunking & Overlap Tradeoffs
+            </div>
+          </div>
+          <div class="graph-meta">
+            <span>Interactive Desmos graph</span>
+            <span>Context windows · token budgets · overlap</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          This visualization explores how different chunk sizes and overlaps affect
+          how long documents are split for LLM processing. Adjust the sliders to see
+          the tradeoffs between context window size, overlap, number of chunks, and
+          total tokens consumed.
+        </div>
+
+        <iframe
+          src="https://www.desmos.com/calculator/0a825fed28?lang=en"
+          title="LLM Chunking Optimizer"
+          frameborder="0"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">LLM pipelines</span>
+            <span class="chip">Tokenization</span>
+            <span class="chip">Context window design</span>
+          </div>
+          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en" target="_blank" rel="noopener noreferrer">
+            Open in Desmos ↗
+          </a>
+        </div>
+      </section>
+
+      <!-- 2) Placeholder for another (unrelated) graph -->
+      <section id="entropy-diversity" class="graph-card">
+        <div class="graph-header">
+          <div>
+            <div class="graph-title">
+              Entropy & Diversity Explorer
+            </div>
+          </div>
+          <div class="graph-meta">
+            <span>Interactive Desmos graph</span>
+            <span>Distributions · normalization · heterogeneity</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          Example slot for a graph related to topic diversity, entropy, or
+          normalization schemes. Use this to visualize how changes in category
+          weights affect overall diversity scores or normalized entropy.
+        </div>
+
+        <!-- Replace with your real Desmos URL -->
+        <iframe
+          src="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"
+          title="Entropy Explorer"
+          frameborder="0"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">Entropy</span>
+            <span class="chip">Topic diversity</span>
+            <span class="chip">Normalization</span>
+          </div>
+          <a href="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"
+             target="_blank" rel="noopener noreferrer">
+            Open in Desmos ↗
+          </a>
+        </div>
+      </section>
+
+      <!-- 3) Placeholder for a dynamics / PDE / discrete system graph -->
+      <section id="dynamics" class="graph-card">
+        <div class="graph-header">
+          <div>
+            <div class="graph-title">
+              Dynamics & Diffusion Toy Model
+            </div>
+          </div>
+          <div class="graph-meta">
+            <span>Interactive Desmos graph</span>
+            <span>Equilibria · stability · flows</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          Slot for a diffusion / equilibrium / discrete dynamics visualization.
+          Useful for building intuition around stability, fixed points, and how local
+          rules induce global behavior over time or space.
+        </div>
+
+        <!-- Replace with your real Desmos URL -->
+        <iframe
+          src="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"
+          title="Dynamics Toy Model"
+          frameborder="0"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">Dynamics</span>
+            <span class="chip">Diffusion</span>
+            <span class="chip">Equilibria</span>
+          </div>
+          <a href="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"
+             target="_blank" rel="noopener noreferrer">
+            Open in Desmos ↗
+          </a>
+        </div>
+      </section>
+
+      <!-- 4) Misc / playful / unrelated experiments -->
+      <section id="misc" class="graph-card">
+        <div class="graph-header">
+          <div>
+            <div class="graph-title">
+              Misc Visual Experiments
+            </div>
+          </div>
+          <div class="graph-meta">
+            <span>Interactive Desmos graph</span>
+            <span>Geometry · play · intuition</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          A space for unrelated experiments: geometric constructions, game-inspired
+          layouts, or anything that helped me think through a problem visually.
+          These don’t need to be tied to a specific project to be useful.
+        </div>
+
+        <!-- Replace with your real Desmos URL -->
+        <iframe
+          src="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"
+          title="Misc Experiments"
+          frameborder="0"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">Exploration</span>
+            <span class="chip">Geometry</span>
+            <span class="chip">Playful modeling</span>
+          </div>
+          <a href="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"
+             target="_blank" rel="noopener noreferrer">
+            Open in Desmos ↗
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Built with Desmos and curiosity. Connect with me on
+      <a href="https://www.linkedin.com/in/jvahedi" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+    </footer>
+  </div>
+</body>
+</html>
