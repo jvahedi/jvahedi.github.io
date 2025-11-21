@@ -21,6 +21,34 @@
         "Segoe UI", sans-serif;
     }
 
+    .compact-header {
+      padding: 20px 24px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(10px);
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    .compact-header h1 {
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .compact-header h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .compact-header p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -38,70 +66,6 @@
     .shell {
       max-width: 1100px;
       margin: 0 auto 80px;
-    }
-
-    header {
-      padding: 24px 26px 18px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(79, 209, 197, 0.12), transparent),
-        radial-gradient(circle at top left, rgba(129, 140, 248, 0.18), transparent),
-        #050816;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 32px;
-      position: sticky;
-      top: 16px;
-      backdrop-filter: blur(16px);
-      z-index: 10;
-    }
-
-    header h1 {
-      font-size: 1.7rem;
-      letter-spacing: 0.03em;
-      margin-bottom: 4px;
-    }
-
-    header p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      max-width: 680px;
-    }
-
-    .tagline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-    }
-
-    .tag-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(79, 209, 197, 0.9);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .pill {
-      padding: 3px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.78rem;
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.7);
     }
 
     main {
@@ -171,10 +135,10 @@
       max-width: 800px;
     }
 
-    /* Updated iframe height */
+    /* Taller iframe so Desmos UI isn’t cropped */
     iframe {
       width: 100%;
-      height: 650px; /* was 420px */
+      height: 650px;
       border-radius: 14px;
       border: 1px solid rgba(148, 163, 184, 0.5);
       background: #020617;
@@ -230,12 +194,9 @@
       body {
         padding: 16px;
       }
-      header {
-        position: static;
-      }
-      /* Taller on mobile too */
+      /* slightly shorter on mobile but still tall enough */
       iframe {
-        height: 520px; /* was 360px */
+        height: 520px;
       }
       .graph-header {
         flex-direction: column;
@@ -249,24 +210,10 @@
 </head>
 <body>
   <div class="shell">
-    <header>
-      <div class="tagline">
-        <span class="tag-dot"></span>
-        Interactive math, systems, and AI visualizations
-      </div>
-      <h1>JJ Vahedi – Research & Modeling Playground</h1>
-      <p>
-        A collection of Desmos-based visual experiments exploring LLM systems,
-        entropy & diversity, dynamics, and other structures I’m thinking about.
-        Each graph is fully interactive – move sliders, drag points, and see how
-        the behavior changes.
-      </p>
-      <div class="pill-row">
-        <div class="pill">LLMs & context architecture</div>
-        <div class="pill">Applied math & PDE intuition</div>
-        <div class="pill">Entropy & diversity measures</div>
-        <div class="pill">Toy models & visual experiments</div>
-      </div>
+    <header class="compact-header">
+      <h1>Interactive Visualizations</h1>
+      <h2>JJ Vahedi</h2>
+      <p>Small interactive models exploring LLM behavior, entropy, and systems intuition.</p>
     </header>
 
     <main>
@@ -287,10 +234,9 @@
         </div>
 
         <div class="graph-body">
-          This visualization explores how different chunk sizes and overlaps affect
-          how long documents are split for LLM processing. Adjust the sliders to see
-          the tradeoffs between context window size, overlap, number of chunks, and
-          total tokens consumed.
+          Visualization of how different chunk sizes and overlaps affect how long
+          documents are split for LLM processing. Adjust sliders to see the tradeoffs
+          between context window size, overlap, number of chunks, and total tokens.
         </div>
 
         <iframe
@@ -305,7 +251,8 @@
             <span class="chip">Tokenization</span>
             <span class="chip">Context window design</span>
           </div>
-          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en"
+             target="_blank" rel="noopener noreferrer">
             Open in Desmos ↗
           </a>
         </div>
@@ -326,9 +273,9 @@
         </div>
 
         <div class="graph-body">
-          Example slot for a graph related to topic diversity, entropy, or
-          normalization schemes. Use this to visualize how changes in category
-          weights affect overall diversity scores or normalized entropy.
+          Slot for a graph related to topic diversity, entropy, or normalization.
+          Use this to visualize how changes in category weights affect overall
+          diversity scores or normalized entropy.
         </div>
 
         <!-- Replace with your real Desmos URL -->
@@ -368,7 +315,7 @@
         <div class="graph-body">
           Slot for a diffusion / equilibrium / discrete dynamics visualization.
           Useful for building intuition around stability, fixed points, and how local
-          rules induce global behavior over time or space.
+          rules induce global behavior.
         </div>
 
         <!-- Replace with your real Desmos URL -->
@@ -408,7 +355,6 @@
         <div class="graph-body">
           A space for unrelated experiments: geometric constructions, game-inspired
           layouts, or anything that helped me think through a problem visually.
-          These don’t need to be tied to a specific project to be useful.
         </div>
 
         <!-- Replace with your real Desmos URL -->
