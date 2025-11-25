@@ -17,53 +17,9 @@
       --radius-xl: 18px;
       --radius-full: 999px;
       --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.5);
-      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
+                   "SF Pro Text", "Segoe UI", sans-serif;
     }
-
-    /* ----------------------------- */
-    /* FIXED BANNER HEADER (smaller) */
-    /* ----------------------------- */
-
-    .banner-wrapper {
-      position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 1100px;
-      z-index: 50;
-      padding: 0 24px;
-      pointer-events: none;
-    }
-
-    .banner-header {
-      padding: 10px 16px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(79, 209, 197, 0.14), transparent),
-                  radial-gradient(circle at top left, rgba(129, 140, 248, 0.15), transparent 55%),
-                  #050816f5;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
-      backdrop-filter: blur(12px);
-      pointer-events: auto;
-    }
-
-    .banner-title {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      margin-bottom: 2px;
-    }
-
-    .banner-sub {
-      font-size: 0.84rem;
-      color: var(--muted);
-    }
-
-    /* ----------------------------- */
-    /* GLOBAL STYLES */
-    /* ----------------------------- */
 
     * {
       box-sizing: border-box;
@@ -82,44 +38,57 @@
     .shell {
       max-width: 1100px;
       margin: 0 auto 80px;
-      margin-top: 86px; /* gap for banner */
     }
 
-    /* ----------------------------- */
-    /* TWO-COLUMN GRID LAYOUT */
-    /* ----------------------------- */
+    /* Header banner */
+    header {
+      padding: 20px 24px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(79, 209, 197, 0.14), transparent),
+                  radial-gradient(circle at top left, rgba(129, 140, 248, 0.18), transparent),
+                  #050816f2;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      margin-bottom: 32px;
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    header h1 {
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
     main {
-      margin-top: 10px;
+      margin-top: 20px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
       gap: 26px;
     }
 
-    /* ----------------------------- */
-    /* SECTION LABELS */
-    /* ----------------------------- */
-
     .section-label {
       grid-column: 1 / -1;
       font-size: 1.15rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
-      margin: 28px 4px 8px;
       color: var(--accent);
-      text-transform: none;
+      margin: 26px 0 10px;
     }
-
-    /* ----------------------------- */
-    /* GRAPH CARDS */
-    /* ----------------------------- */
 
     .graph-card {
       background: radial-gradient(circle at top, #1f2937, #050816 80%);
       border-radius: 20px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      padding: 16px 16px 20px;
+      padding: 18px 18px 20px;
       position: relative;
       overflow: hidden;
     }
@@ -128,9 +97,8 @@
       content: "";
       position: absolute;
       inset: -40%;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(79, 209, 197, 0.10), transparent 55%),
-        radial-gradient(circle at 110% 0%, rgba(129, 140, 248, 0.12), transparent 55%);
+      background: radial-gradient(circle at 0% 0%, rgba(79, 209, 197, 0.12), transparent 55%),
+                  radial-gradient(circle at 110% 0%, rgba(129, 140, 248, 0.14), transparent 55%);
       opacity: 0.75;
       z-index: -1;
     }
@@ -139,14 +107,12 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 10px;
       margin-bottom: 10px;
     }
 
     .graph-title {
       font-size: 1rem;
       font-weight: 600;
-      letter-spacing: 0.02em;
     }
 
     .graph-meta {
@@ -158,340 +124,143 @@
     .graph-body {
       font-size: 0.88rem;
       color: var(--muted);
-      margin-bottom: 8px;
-      max-width: 800px;
+      margin-bottom: 10px;
     }
 
     iframe {
       width: 100%;
       height: 600px;
-      margin-top: 6px;
       border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      border: 1px solid rgba(148,163,184,0.5);
       background: #020617;
-    }
-
-    .graph-footer {
-      margin-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .graph-footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .graph-footer a:hover {
-      text-decoration: underline;
-    }
-
-    .tag-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chip {
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      font-size: 0.72rem;
-      color: var(--muted);
     }
 
     footer {
       margin-top: 40px;
-      font-size: 0.8rem;
-      color: var(--muted);
       text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
     }
 
     footer a {
       color: var(--accent);
       text-decoration: none;
     }
-
-    @media (max-width: 720px) {
-      body {
-        padding: 16px;
-      }
-      .banner-wrapper {
-        padding: 0 12px;
-        top: 8px;
-      }
-      .shell {
-        margin-top: 88px;
-      }
-      iframe {
-        height: 520px;
-      }
-    }
   </style>
 </head>
 
 <body>
-  <!-- Fixed banner -->
-  <div class="banner-wrapper">
-    <header class="banner-header">
-      <div class="banner-title">Interactive Math, Systems & AI Visualizations</div>
-      <div class="banner-sub">John Vahedi – Research & Modeling Playground</div>
-    </header>
-  </div>
 
   <div class="shell">
+
+    <header>
+      <h1>Interactive Math, Systems & AI Visualizations</h1>
+      <p>John Vahedi – Research & Modeling Playground</p>
+    </header>
+
     <main>
 
-      <!-- SECTION 1: Internal Mechanics of AI Systems -->
+      <!-- SECTION 1 -->
       <div class="section-label">Internal Mechanics of AI Systems</div>
 
-      <!-- LLM Chunking -->
+      <!-- LLM chunking -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">LLM Chunking & Overlap Tradeoffs</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos graph</span>
-            <span>Context windows · token budgets · overlap</span>
-          </div>
+          <div class="graph-meta">Interactive Desmos graph<br>Tokenization · context windows</div>
         </div>
 
         <div class="graph-body">
-          Visualization of how chunk size and overlap affect document splitting
-          for LLM processing. Adjust sliders to see how window size, overlap,
-          chunk count, and total tokens interact when you try to fit long text
-          into a finite context window.
+          Visualization of chunk size, overlap, failure probability, and chunk count for LLM preprocessing.
         </div>
 
         <iframe src="https://www.desmos.com/calculator/0a825fed28?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">LLM pipelines</span>
-            <span class="chip">Tokenization</span>
-            <span class="chip">Context windows</span>
-          </div>
-          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
       <!-- Softmax -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Softmax, Temperature & Truncation</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos graph</span>
-            <span>Probability mass · top-p · temperature</span>
-          </div>
+          <div class="graph-meta">Interactive Desmos graph<br>Top-p · sampling</div>
         </div>
 
-        <div class="graph-body">
-          This graph treats logits as sliders and shows how the softmax distribution
-          responds to changes in temperature and a top-percent threshold. Great for
-          visualizing sharpening, flattening, or truncating the distribution.
-        </div>
+        <p class="graph-body">Explore temperature, logits, and top-percent truncation behaviour.</p>
 
         <iframe src="https://www.desmos.com/calculator/ac1941d5b9?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">Softmax</span>
-            <span class="chip">Sampling</span>
-            <span class="chip">Temperature scaling</span>
-          </div>
-          <a href="https://www.desmos.com/calculator/ac1941d5b9?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
-      <!-- Cosine Similarity -->
+      <!-- Cosine -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Cosine Similarity Confidence Curve</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos graph</span>
-            <span>Embedding geometry · random vectors</span>
-          </div>
+          <div class="graph-meta">High-dim geometry · embeddings</div>
         </div>
 
         <div class="graph-body">
-          A toy model for how “surprising” a cosine similarity value is in
-          high-dimensional space. The curve derives from the distribution
-          of random unit vectors; sliders let you explore confidence
-          thresholds and curvature.
+          How surprising a cosine similarity value is in high dimensions.
         </div>
 
         <iframe src="https://www.desmos.com/calculator/2e91e42c2f?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">Cosine similarity</span>
-            <span class="chip">Embeddings</span>
-            <span class="chip">Geometry</span>
-          </div>
-          <a href="https://www.desmos.com/calculator/2e91e42c2f?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
       <!-- SECTION 2 -->
       <div class="section-label">Transformations & Intuition-Building</div>
 
-      <!-- Finite S-Curve -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Finite-Interval S-Curve Transformation</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos graph</span>
-            <span>Bounded mappings · calibration curves</span>
-          </div>
-        </div>
-
-        <div class="graph-body">
-          A smooth S-shaped transformation that behaves like a sigmoid but
-          stays on a finite interval. The mid-range is more sensitive, while
-          the endpoints flatten — useful for calibration curves or score
-          normalization.
+          <div class="graph-meta">Bounded sigmoid mapping</div>
         </div>
 
         <iframe src="https://www.desmos.com/calculator/7a81eeeb3b?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">Finite sigmoid</span>
-            <span class="chip">Calibration</span>
-            <span class="chip">Transform</span>
-          </div>
-          <a href="https://www.desmos.com/calculator/7a81eeeb3b?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
-      <!-- 3D Radial Contraction -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">3D Radial Contraction Toy Model</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos 3D graph</span>
-            <span>Ellipsoids · exponents · radial scaling</span>
-          </div>
-        </div>
-
-        <div class="graph-body">
-          A 3D toy model that deforms an ellipsoid using nonlinear radial
-          scaling. It produces a range of “pinched,” stretched, or warped
-          geometries — a pure intuition-building transform.
+          <div class="graph-meta">Nonlinear geometry</div>
         </div>
 
         <iframe src="https://www.desmos.com/3d/a82d7555b4?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">3D geometry</span>
-            <span class="chip">Radial scaling</span>
-            <span class="chip">Nonlinear transform</span>
-          </div>
-          <a href="https://www.desmos.com/3d/a82d7555b4?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
       <!-- SECTION 3 -->
       <div class="section-label">Systems, Sampling & Failure Modes</div>
 
-      <!-- Sampling -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Itemization Sampling Model</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos graph</span>
-            <span>Sampling · audits · expected coverage</span>
-          </div>
-        </div>
-
-        <div class="graph-body">
-          A sampling model for item-level audits. Adjust population, sample size,
-          confidence level, and item frequency to see how often an item appears
-          across sample runs.
         </div>
 
         <iframe src="https://www.desmos.com/calculator/200d42fae9?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">Sampling</span>
-            <span class="chip">Auditing</span>
-            <span class="chip">Coverage</span>
-          </div>
-          <a href="https://www.desmos.com/calculator/200d42fae9?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
-      <!-- Server Decision -->
       <section class="graph-card">
         <div class="graph-header">
-          <div class="graph-title">Server vs Local Execution Decision Tool</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos graph</span>
-            <span>Speedup · overhead · break-even</span>
-          </div>
-        </div>
-
-        <div class="graph-body">
-          A contour plot for deciding whether to run a job locally or offload to a
-          server. Overhead, speedup, and job duration determine whether the switch
-          saves or loses time.
+          <div class="graph-title">Server vs Local Execution Tradeoff</div>
         </div>
 
         <iframe src="https://www.desmos.com/calculator/ab128b21ee?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">Performance</span>
-            <span class="chip">Parallel computing</span>
-            <span class="chip">Trade-off</span>
-          </div>
-          <a href="https://www.desmos.com/calculator/ab128b21ee?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
       <!-- SECTION 4 -->
       <div class="section-label">Mathematical Play & Structural Curiosity</div>
 
-      <!-- Osculating Circle -->
       <section class="graph-card">
         <div class="graph-header">
-          <div class="graph-title">Osculating Circle & Curvature</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos graph</span>
-            <span>Curvature · differential geometry</span>
-          </div>
-        </div>
-
-        <div class="graph-body">
-          Choose a function, choose a point, and this graph draws the osculating
-          circle that “kisses” the curve at that spot. A visual way to see
-          curvature and radius-of-curvature evolve along the curve.
+          <div class="graph-title">Osculating Circle Intuition Tool</div>
         </div>
 
         <iframe src="https://www.desmos.com/calculator/0159acbea5?lang=en&fontSize=13"></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">Curvature</span>
-            <span class="chip">Differential geometry</span>
-            <span class="chip">Structure</span>
-          </div>
-          <a href="https://www.desmos.com/calculator/0159acbea5?lang=en" target="_blank">Open in Desmos ↗</a>
-        </div>
       </section>
 
     </main>
 
     <footer>
-      Built with Desmos and curiosity. Connect on
-      <a href="https://www.linkedin.com/in/jvahedi" target="_blank">LinkedIn</a>.
+      Built with Desmos and curiosity — <a href="https://www.linkedin.com/in/jvahedi">Connect on LinkedIn</a>.
     </footer>
+
   </div>
+
 </body>
 </html>
