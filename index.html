@@ -34,7 +34,7 @@
       max-width: 1100px;
       z-index: 50;
       padding: 0 24px;
-      pointer-events: none; /* so clicks on edges go through */
+      pointer-events: none; /* edges click-through */
     }
 
     .banner-header {
@@ -46,7 +46,7 @@
       border: 1px solid rgba(148, 163, 184, 0.4);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
       backdrop-filter: blur(14px);
-      pointer-events: auto; /* clicks on the banner itself still work */
+      pointer-events: auto;
     }
 
     .banner-title {
@@ -82,8 +82,7 @@
     .shell {
       max-width: 1100px;
       margin: 0 auto 80px;
-      /* extra top margin so content clears the fixed banner */
-      margin-top: 96px;
+      margin-top: 96px; /* clears fixed banner */
     }
 
     main {
@@ -153,10 +152,6 @@
       max-width: 800px;
     }
 
-    /* ----------------------------- */
-    /* IFRAME FIXED HEIGHT */
-    /* ----------------------------- */
-
     iframe {
       width: 100%;
       height: 650px;
@@ -178,6 +173,10 @@
     .graph-footer a {
       color: var(--accent);
       text-decoration: none;
+    }
+
+    .graph-footer a:hover {
+      text-decoration: underline;
     }
 
     .tag-chips {
@@ -233,7 +232,7 @@
 </head>
 
 <body>
-  <!-- Fixed banner sitting above the main shell -->
+  <!-- Fixed banner -->
   <div class="banner-wrapper">
     <header class="banner-header">
       <div class="banner-title">Interactive Math, Systems & AI Visualizations</div>
@@ -243,9 +242,9 @@
 
   <div class="shell">
     <main>
-      <div class="section-label">Graphs</div>
+      <div class="section-label">LLM Systems & Probabilities</div>
 
-      <!-- 1) ACTUAL GRAPH -->
+      <!-- 1) LLM Chunking & Overlap Tradeoffs -->
       <section id="llm-chunking" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">LLM Chunking & Overlap Tradeoffs</div>
@@ -256,11 +255,16 @@
         </div>
 
         <div class="graph-body">
-          Visualization of how chunk size and overlap affect LLM document splitting.
-          Adjust sliders to see how window size, overlap, and total tokens interact.
+          Visualization of how chunk size and overlap affect document splitting
+          for LLM processing. Adjust sliders to see how window size, overlap,
+          chunk count, and total tokens interact when you try to fit long text
+          into a finite context window.
         </div>
 
-        <iframe src="https://www.desmos.com/calculator/0a825fed28?lang=en"></iframe>
+        <iframe
+          src="https://www.desmos.com/calculator/0a825fed28?lang=en"
+          title="LLM Chunking & Overlap Tradeoffs"
+        ></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
@@ -269,79 +273,247 @@
             <span class="chip">Context windows</span>
           </div>
           <a href="https://www.desmos.com/calculator/0a825fed28?lang=en"
-             target="_blank">Open in Desmos ↗</a>
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
         </div>
       </section>
 
-      <!-- 2) PLACEHOLDER -->
-      <section id="entropy-diversity" class="graph-card">
+      <!-- 2) Softmax & Temperature -->
+      <section id="softmax" class="graph-card">
         <div class="graph-header">
-          <div class="graph-title">Entropy & Diversity Explorer</div>
+          <div class="graph-title">Softmax, Temperature & Truncation</div>
           <div class="graph-meta">
             <span>Interactive Desmos graph</span>
-            <span>Distributions · normalization</span>
+            <span>Probability mass · top-p · temperature</span>
           </div>
         </div>
 
-        <div class="graph-body">Placeholder graph for entropy / diversity modeling.</div>
+        <div class="graph-body">
+          This graph treats logits as sliders and shows how the softmax
+          distribution responds to changes in temperature and a top-percent
+          threshold. It’s a visual way to see how sharpening, flattening,
+          or truncating the distribution shifts probability mass across tokens.
+        </div>
 
-        <iframe src="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"></iframe>
+        <iframe
+          src="https://www.desmos.com/calculator/ac1941d5b9?lang=en"
+          title="Softmax Temperature and Truncation"
+        ></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
-            <span class="chip">Entropy</span>
-            <span class="chip">Diversity</span>
+            <span class="chip">Softmax</span>
+            <span class="chip">Sampling</span>
+            <span class="chip">Temperature scaling</span>
           </div>
-          <a href="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"
-             target="_blank">Open in Desmos ↗</a>
+          <a href="https://www.desmos.com/calculator/ac1941d5b9?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
         </div>
       </section>
 
-      <!-- 3) PLACEHOLDER -->
-      <section id="dynamics" class="graph-card">
+      <!-- 3) Cosine Similarity Confidence -->
+      <section id="cosine-sim" class="graph-card">
         <div class="graph-header">
-          <div class="graph-title">Dynamics & Diffusion Toy Model</div>
+          <div class="graph-title">Cosine Similarity Confidence Curve</div>
           <div class="graph-meta">
             <span>Interactive Desmos graph</span>
-            <span>Equilibria · flows</span>
+            <span>Embedding geometry · random vectors</span>
           </div>
         </div>
 
-        <div class="graph-body">Placeholder graph for dynamics and diffusion intuition.</div>
+        <div class="graph-body">
+          A toy model for how “surprising” a cosine similarity value is in
+          high-dimensional space. The curve is derived from the distribution
+          of random unit vectors; sliders let you change embedding dimension
+          and inspect curvature, giving intuition for confidence thresholds
+          in embedding-based retrieval.
+        </div>
 
-        <iframe src="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"></iframe>
+        <iframe
+          src="https://www.desmos.com/calculator/2e91e42c2f?lang=en"
+          title="Cosine Similarity Confidence"
+        ></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
-            <span class="chip">Dynamics</span>
-            <span class="chip">Diffusion</span>
+            <span class="chip">Cosine similarity</span>
+            <span class="chip">Embeddings</span>
+            <span class="chip">High-dimensional geometry</span>
           </div>
-          <a href="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"
-             target="_blank">Open in Desmos ↗</a>
+          <a href="https://www.desmos.com/calculator/2e91e42c2f?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
         </div>
       </section>
 
-      <!-- 4) PLACEHOLDER -->
-      <section id="misc" class="graph-card">
+      <div class="section-label">Transforms, Sampling & Performance</div>
+
+      <!-- 4) Finite-Interval S-Curve -->
+      <section id="finite-s-curve" class="graph-card">
         <div class="graph-header">
-          <div class="graph-title">Misc Visual Experiments</div>
+          <div class="graph-title">Finite-Interval S-Curve Transformation</div>
           <div class="graph-meta">
             <span>Interactive Desmos graph</span>
-            <span>Play · geometry</span>
+            <span>Bounded mappings · calibration curves</span>
           </div>
         </div>
 
-        <div class="graph-body">Miscellaneous visual experiments, geometry, play, etc.</div>
+        <div class="graph-body">
+          A smooth S-shaped transformation that behaves like a sigmoid but
+          stays on a finite interval. Sliders control slope and midpoint,
+          showing how you can reparameterize a bounded variable so the
+          mid-range is more sensitive while the endpoints flatten out.
+          Think calibration curves, contrast functions, or bounded score
+          mappings.
+        </div>
 
-        <iframe src="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"></iframe>
+        <iframe
+          src="https://www.desmos.com/calculator/7a81eeeb3b?lang=en"
+          title="Finite-Interval S-Curve Transformation"
+        ></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
-            <span class="chip">Exploration</span>
-            <span class="chip">Geometry</span>
+            <span class="chip">Finite-domain sigmoid</span>
+            <span class="chip">Calibration</span>
+            <span class="chip">Bounded transform</span>
           </div>
-          <a href="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"
-             target="_blank">Open in Desmos ↗</a>
+          <a href="https://www.desmos.com/calculator/7a81eeeb3b?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
+        </div>
+      </section>
+
+      <!-- 5) Itemization Sampling -->
+      <section id="itemization-sampling" class="graph-card">
+        <div class="graph-header">
+          <div class="graph-title">Itemization Sampling Model</div>
+          <div class="graph-meta">
+            <span>Interactive Desmos graph</span>
+            <span>Sampling · audits · expected coverage</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          A small sampling model for item-level audits: sliders adjust
+          population size, sample size, confidence level, and item frequency.
+          The plot reveals how often a given item is expected to appear in
+          samples and how that changes as you tune the sampling plan.
+        </div>
+
+        <iframe
+          src="https://www.desmos.com/calculator/200d42fae9?lang=en"
+          title="Itemization Sampling Model"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">Sampling</span>
+            <span class="chip">Auditing</span>
+            <span class="chip">Coverage</span>
+          </div>
+          <a href="https://www.desmos.com/calculator/200d42fae9?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
+        </div>
+      </section>
+
+      <!-- 6) Server Decision Tool -->
+      <section id="server-decision" class="graph-card">
+        <div class="graph-header">
+          <div class="graph-title">Server vs Local Execution Decision Tool</div>
+          <div class="graph-meta">
+            <span>Interactive Desmos graph</span>
+            <span>Speedup · overhead · break-even</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          A contour plot for deciding whether it’s worth sending a job to a
+          remote server. Sliders control added overhead and expected speedup;
+          the plot shows green and red regions indicating when offloading
+          saves time or actually makes things slower, given your current
+          job length.
+        </div>
+
+        <iframe
+          src="https://www.desmos.com/calculator/ab128b21ee?lang=en"
+          title="Server vs Local Execution Decision Tool"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">Performance</span>
+            <span class="chip">Parallel computing</span>
+            <span class="chip">Cost–benefit</span>
+          </div>
+          <a href="https://www.desmos.com/calculator/ab128b21ee?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
+        </div>
+      </section>
+
+      <div class="section-label">Geometry & Toy Models</div>
+
+      <!-- 7) Osculating Circle -->
+      <section id="osculating-circle" class="graph-card">
+        <div class="graph-header">
+          <div class="graph-title">Osculating Circle & Curvature</div>
+          <div class="graph-meta">
+            <span>Interactive Desmos graph</span>
+            <span>Curvature · differential geometry</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          Pick a function, choose a point, and this graph draws the osculating
+          circle that best “kisses” the curve there. It exposes curvature and
+          radius of curvature in a concrete way, turning textbook formulas
+          into something you can see and drag along the curve.
+        </div>
+
+        <iframe
+          src="https://www.desmos.com/calculator/0159acbea5?lang=en"
+          title="Osculating Circle and Curvature"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">Curvature</span>
+            <span class="chip">Differential geometry</span>
+            <span class="chip">Calculus</span>
+          </div>
+          <a href="https://www.desmos.com/calculator/0159acbea5?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
+        </div>
+      </section>
+
+      <!-- 8) 3D Radial Contraction -->
+      <section id="radial-contraction-3d" class="graph-card">
+        <div class="graph-header">
+          <div class="graph-title">3D Radial Contraction Toy Model</div>
+          <div class="graph-meta">
+            <span>Interactive Desmos 3D graph</span>
+            <span>Ellipsoids · exponents · radial scaling</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          A 3D toy model that deforms an ellipsoid via radial scaling and
+          exponents. Parameters control the axes and contraction powers,
+          producing different “pinched” or stretched shapes. It’s mostly
+          for geometric intuition and play around smooth nonlinear
+          transformations in three dimensions.
+        </div>
+
+        <iframe
+          src="https://www.desmos.com/3d/a82d7555b4?lang=en"
+          title="3D Radial Contraction"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">3D geometry</span>
+            <span class="chip">Radial scaling</span>
+            <span class="chip">Toy model</span>
+          </div>
+          <a href="https://www.desmos.com/3d/a82d7555b4?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
         </div>
       </section>
 
@@ -349,9 +521,8 @@
 
     <footer>
       Built with Desmos and curiosity. Connect on
-      <a href="https://www.linkedin.com/in/jvahedi" target="_blank">LinkedIn</a>.
+      <a href="https://www.linkedin.com/in/jvahedi" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
     </footer>
-
   </div>
 </body>
 </html>
