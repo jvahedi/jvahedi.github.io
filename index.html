@@ -21,33 +21,38 @@
         "Segoe UI", sans-serif;
     }
 
-    .compact-header {
-      padding: 20px 24px;
+    /* ----------------------------- */
+    /* NEW BANNER HEADER */
+    /* ----------------------------- */
+
+    .banner-header {
+      padding: 18px 22px;
       border-radius: 20px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(135deg, rgba(79, 209, 197, 0.12), transparent),
+                  radial-gradient(circle at top left, rgba(129, 140, 248, 0.15), transparent 55%),
+                  #050816;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
       margin-bottom: 22px;
-      text-align: left;
+      backdrop-filter: blur(12px);
     }
 
-    .compact-header h1 {
-      font-size: 1.35rem;
-      margin-bottom: 4px;
+    .banner-title {
+      font-size: 1.18rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
     }
 
-    .compact-header h2 {
-      font-size: 1rem;
-      font-weight: 500;
+    .banner-sub {
+      font-size: 0.95rem;
       color: var(--muted);
-      margin-bottom: 10px;
+      margin-bottom: 0px;
     }
 
-    .compact-header p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 620px;
-    }
+    /* ------------------------------------------------------- */
+    /* GLOBAL STYLES */
+    /* ------------------------------------------------------- */
 
     * {
       box-sizing: border-box;
@@ -82,6 +87,10 @@
       color: var(--muted);
       margin: 8px 2px;
     }
+
+    /* ------------------------------------------------------- */
+    /* GRAPH CARD STYLING */
+    /* ------------------------------------------------------- */
 
     .graph-card {
       background: radial-gradient(circle at top, #1f2937, #050816 80%);
@@ -124,10 +133,6 @@
       color: var(--muted);
     }
 
-    .graph-meta span {
-      display: block;
-    }
-
     .graph-body {
       font-size: 0.9rem;
       color: var(--muted);
@@ -135,7 +140,10 @@
       max-width: 800px;
     }
 
-    /* Taller iframe so Desmos UI isn’t cropped */
+    /* ----------------------------- */
+    /* FIXED IFRAME HEIGHT */
+    /* ----------------------------- */
+
     iframe {
       width: 100%;
       height: 650px;
@@ -157,10 +165,6 @@
     .graph-footer a {
       color: var(--accent);
       text-decoration: none;
-    }
-
-    .graph-footer a:hover {
-      text-decoration: underline;
     }
 
     .tag-chips {
@@ -194,7 +198,6 @@
       body {
         padding: 16px;
       }
-      /* slightly shorter on mobile but still tall enough */
       iframe {
         height: 520px;
       }
@@ -208,12 +211,17 @@
     }
   </style>
 </head>
+
 <body>
   <div class="shell">
-    <header class="compact-header">
-      <h1>Interactive Visualizations</h1>
-      <h2>JJ Vahedi</h2>
-      <p>Small interactive models exploring LLM behavior, entropy, and systems intuition.</p>
+
+    <!-- --------------------------- -->
+    <!-- NEW BANNER HEADER -->
+    <!-- --------------------------- -->
+
+    <header class="banner-header">
+      <div class="banner-title">Interactive Math, Systems & AI Visualizations</div>
+      <div class="banner-sub">JJ Vahedi – Research & Modeling Playground</div>
     </header>
 
     <main>
@@ -222,11 +230,7 @@
       <!-- 1) Your actual graph -->
       <section id="llm-chunking" class="graph-card">
         <div class="graph-header">
-          <div>
-            <div class="graph-title">
-              LLM Chunking & Overlap Tradeoffs
-            </div>
-          </div>
+          <div class="graph-title">LLM Chunking & Overlap Tradeoffs</div>
           <div class="graph-meta">
             <span>Interactive Desmos graph</span>
             <span>Context windows · token budgets · overlap</span>
@@ -234,154 +238,112 @@
         </div>
 
         <div class="graph-body">
-          Visualization of how different chunk sizes and overlaps affect how long
-          documents are split for LLM processing. Adjust sliders to see the tradeoffs
-          between context window size, overlap, number of chunks, and total tokens.
+          Visualization of how different chunk sizes and overlaps affect
+          document splitting for LLM processing. Adjust sliders to see
+          tradeoffs between window size, overlap, number of chunks,
+          and total tokens consumed.
         </div>
 
         <iframe
           src="https://www.desmos.com/calculator/0a825fed28?lang=en"
-          title="LLM Chunking Optimizer"
-          frameborder="0"
         ></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
             <span class="chip">LLM pipelines</span>
             <span class="chip">Tokenization</span>
-            <span class="chip">Context window design</span>
+            <span class="chip">Context windows</span>
           </div>
           <a href="https://www.desmos.com/calculator/0a825fed28?lang=en"
-             target="_blank" rel="noopener noreferrer">
-            Open in Desmos ↗
-          </a>
+             target="_blank">Open in Desmos ↗</a>
         </div>
       </section>
 
-      <!-- 2) Placeholder for another (unrelated) graph -->
+      <!-- 2) Placeholder -->
       <section id="entropy-diversity" class="graph-card">
         <div class="graph-header">
-          <div>
-            <div class="graph-title">
-              Entropy & Diversity Explorer
-            </div>
-          </div>
+          <div class="graph-title">Entropy & Diversity Explorer</div>
           <div class="graph-meta">
             <span>Interactive Desmos graph</span>
-            <span>Distributions · normalization · heterogeneity</span>
+            <span>Distributions · normalization</span>
           </div>
         </div>
 
         <div class="graph-body">
-          Slot for a graph related to topic diversity, entropy, or normalization.
-          Use this to visualize how changes in category weights affect overall
-          diversity scores or normalized entropy.
+          Placeholder for a topic diversity / entropy visualization.
         </div>
 
-        <!-- Replace with your real Desmos URL -->
-        <iframe
-          src="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"
-          title="Entropy Explorer"
-          frameborder="0"
-        ></iframe>
+        <iframe src="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
             <span class="chip">Entropy</span>
-            <span class="chip">Topic diversity</span>
-            <span class="chip">Normalization</span>
+            <span class="chip">Diversity</span>
           </div>
           <a href="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"
-             target="_blank" rel="noopener noreferrer">
-            Open in Desmos ↗
-          </a>
+             target="_blank">Open in Desmos ↗</a>
         </div>
       </section>
 
-      <!-- 3) Placeholder for a dynamics / PDE / discrete system graph -->
+      <!-- 3) Placeholder -->
       <section id="dynamics" class="graph-card">
         <div class="graph-header">
-          <div>
-            <div class="graph-title">
-              Dynamics & Diffusion Toy Model
-            </div>
-          </div>
+          <div class="graph-title">Dynamics & Diffusion Toy Model</div>
           <div class="graph-meta">
             <span>Interactive Desmos graph</span>
-            <span>Equilibria · stability · flows</span>
+            <span>Equilibria · flows</span>
           </div>
         </div>
 
         <div class="graph-body">
-          Slot for a diffusion / equilibrium / discrete dynamics visualization.
-          Useful for building intuition around stability, fixed points, and how local
-          rules induce global behavior.
+          Placeholder for a stability/equilibrium/diffusion model.
         </div>
 
-        <!-- Replace with your real Desmos URL -->
-        <iframe
-          src="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"
-          title="Dynamics Toy Model"
-          frameborder="0"
-        ></iframe>
+        <iframe src="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
             <span class="chip">Dynamics</span>
             <span class="chip">Diffusion</span>
-            <span class="chip">Equilibria</span>
           </div>
           <a href="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"
-             target="_blank" rel="noopener noreferrer">
-            Open in Desmos ↗
-          </a>
+             target="_blank">Open in Desmos ↗</a>
         </div>
       </section>
 
-      <!-- 4) Misc / playful / unrelated experiments -->
+      <!-- 4) Placeholder -->
       <section id="misc" class="graph-card">
         <div class="graph-header">
-          <div>
-            <div class="graph-title">
-              Misc Visual Experiments
-            </div>
-          </div>
+          <div class="graph-title">Misc Visual Experiments</div>
           <div class="graph-meta">
             <span>Interactive Desmos graph</span>
-            <span>Geometry · play · intuition</span>
+            <span>Play · geometry</span>
           </div>
         </div>
 
         <div class="graph-body">
-          A space for unrelated experiments: geometric constructions, game-inspired
-          layouts, or anything that helped me think through a problem visually.
+          Placeholder for unrelated visual experiments.
         </div>
 
-        <!-- Replace with your real Desmos URL -->
-        <iframe
-          src="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"
-          title="Misc Experiments"
-          frameborder="0"
-        ></iframe>
+        <iframe src="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
             <span class="chip">Exploration</span>
             <span class="chip">Geometry</span>
-            <span class="chip">Playful modeling</span>
           </div>
           <a href="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"
-             target="_blank" rel="noopener noreferrer">
-            Open in Desmos ↗
-          </a>
+             target="_blank">Open in Desmos ↗</a>
         </div>
       </section>
+
     </main>
 
     <footer>
       Built with Desmos and curiosity. Connect with me on
-      <a href="https://www.linkedin.com/in/jvahedi" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+      <a href="https://www.linkedin.com/in/jvahedi" target="_blank">LinkedIn</a>.
     </footer>
+
   </div>
 </body>
 </html>
