@@ -22,7 +22,7 @@
     }
 
     /* ----------------------------- */
-    /* NEW BANNER HEADER */
+    /* STICKY BANNER HEADER */
     /* ----------------------------- */
 
     .banner-header {
@@ -33,8 +33,13 @@
                   #050816;
       border: 1px solid rgba(148, 163, 184, 0.35);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-      margin-bottom: 22px;
+      margin-bottom: 24px;
       backdrop-filter: blur(12px);
+
+      /* ⭐ Sticky behavior restored */
+      position: sticky;
+      top: 16px;
+      z-index: 20;
     }
 
     .banner-title {
@@ -47,12 +52,11 @@
     .banner-sub {
       font-size: 0.95rem;
       color: var(--muted);
-      margin-bottom: 0px;
     }
 
-    /* ------------------------------------------------------- */
+    /* ----------------------------- */
     /* GLOBAL STYLES */
-    /* ------------------------------------------------------- */
+    /* ----------------------------- */
 
     * {
       box-sizing: border-box;
@@ -88,9 +92,9 @@
       margin: 8px 2px;
     }
 
-    /* ------------------------------------------------------- */
-    /* GRAPH CARD STYLING */
-    /* ------------------------------------------------------- */
+    /* ----------------------------- */
+    /* GRAPH CARDS */
+    /* ----------------------------- */
 
     .graph-card {
       background: radial-gradient(circle at top, #1f2937, #050816 80%);
@@ -141,7 +145,7 @@
     }
 
     /* ----------------------------- */
-    /* FIXED IFRAME HEIGHT */
+    /* IFRAME FIXED HEIGHT */
     /* ----------------------------- */
 
     iframe {
@@ -215,10 +219,7 @@
 <body>
   <div class="shell">
 
-    <!-- --------------------------- -->
-    <!-- NEW BANNER HEADER -->
-    <!-- --------------------------- -->
-
+    <!-- STICKY BANNER HEADER -->
     <header class="banner-header">
       <div class="banner-title">Interactive Math, Systems & AI Visualizations</div>
       <div class="banner-sub">JJ Vahedi – Research & Modeling Playground</div>
@@ -227,7 +228,7 @@
     <main>
       <div class="section-label">Graphs</div>
 
-      <!-- 1) Your actual graph -->
+      <!-- 1) ACTUAL GRAPH -->
       <section id="llm-chunking" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">LLM Chunking & Overlap Tradeoffs</div>
@@ -238,15 +239,11 @@
         </div>
 
         <div class="graph-body">
-          Visualization of how different chunk sizes and overlaps affect
-          document splitting for LLM processing. Adjust sliders to see
-          tradeoffs between window size, overlap, number of chunks,
-          and total tokens consumed.
+          Visualization of how chunk size and overlap affect LLM document splitting.
+          Adjust sliders to see how window size, overlap, and total tokens interact.
         </div>
 
-        <iframe
-          src="https://www.desmos.com/calculator/0a825fed28?lang=en"
-        ></iframe>
+        <iframe src="https://www.desmos.com/calculator/0a825fed28?lang=en"></iframe>
 
         <div class="graph-footer">
           <div class="tag-chips">
@@ -254,12 +251,12 @@
             <span class="chip">Tokenization</span>
             <span class="chip">Context windows</span>
           </div>
-          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en"
+          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en" 
              target="_blank">Open in Desmos ↗</a>
         </div>
       </section>
 
-      <!-- 2) Placeholder -->
+      <!-- 2) PLACEHOLDER -->
       <section id="entropy-diversity" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Entropy & Diversity Explorer</div>
@@ -269,9 +266,7 @@
           </div>
         </div>
 
-        <div class="graph-body">
-          Placeholder for a topic diversity / entropy visualization.
-        </div>
+        <div class="graph-body">Placeholder graph for entropy / diversity modeling.</div>
 
         <iframe src="https://www.desmos.com/calculator/YOUR_ENTROPY_GRAPH_ID_HERE"></iframe>
 
@@ -285,7 +280,7 @@
         </div>
       </section>
 
-      <!-- 3) Placeholder -->
+      <!-- 3) PLACEHOLDER -->
       <section id="dynamics" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Dynamics & Diffusion Toy Model</div>
@@ -295,9 +290,7 @@
           </div>
         </div>
 
-        <div class="graph-body">
-          Placeholder for a stability/equilibrium/diffusion model.
-        </div>
+        <div class="graph-body">Placeholder graph for dynamics and diffusion intuition.</div>
 
         <iframe src="https://www.desmos.com/calculator/YOUR_DYNAMICS_GRAPH_ID_HERE"></iframe>
 
@@ -311,7 +304,7 @@
         </div>
       </section>
 
-      <!-- 4) Placeholder -->
+      <!-- 4) PLACEHOLDER -->
       <section id="misc" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Misc Visual Experiments</div>
@@ -321,9 +314,7 @@
           </div>
         </div>
 
-        <div class="graph-body">
-          Placeholder for unrelated visual experiments.
-        </div>
+        <div class="graph-body">Miscellaneous visual experiments, geometry, play, etc.</div>
 
         <iframe src="https://www.desmos.com/calculator/YOUR_MISC_GRAPH_ID_HERE"></iframe>
 
@@ -340,7 +331,7 @@
     </main>
 
     <footer>
-      Built with Desmos and curiosity. Connect with me on
+      Built with Desmos and curiosity. Connect on
       <a href="https://www.linkedin.com/in/jvahedi" target="_blank">LinkedIn</a>.
     </footer>
 
