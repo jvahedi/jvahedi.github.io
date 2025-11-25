@@ -22,35 +22,42 @@
     }
 
     /* ----------------------------- */
-    /* STICKY BANNER HEADER */
+    /* FIXED BANNER HEADER */
     /* ----------------------------- */
 
-    .banner-header {
-      padding: 18px 22px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(79, 209, 197, 0.12), transparent),
-                  radial-gradient(circle at top left, rgba(129, 140, 248, 0.15), transparent 55%),
-                  #050816;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-      margin-bottom: 24px;
-      backdrop-filter: blur(12px);
+    .banner-wrapper {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1100px;
+      z-index: 50;
+      padding: 0 24px;
+      pointer-events: none; /* so clicks on edges go through */
+    }
 
-      /* ⭐ Sticky behavior restored */
-      position: sticky;
-      top: 16px;
-      z-index: 20;
+    .banner-header {
+      padding: 14px 20px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(79, 209, 197, 0.16), transparent),
+                  radial-gradient(circle at top left, rgba(129, 140, 248, 0.18), transparent 55%),
+                  #050816;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(14px);
+      pointer-events: auto; /* clicks on the banner itself still work */
     }
 
     .banner-title {
-      font-size: 1.18rem;
+      font-size: 1.08rem;
       font-weight: 600;
       letter-spacing: 0.02em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .banner-sub {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
@@ -75,6 +82,8 @@
     .shell {
       max-width: 1100px;
       margin: 0 auto 80px;
+      /* extra top margin so content clears the fixed banner */
+      margin-top: 96px;
     }
 
     main {
@@ -202,6 +211,13 @@
       body {
         padding: 16px;
       }
+      .banner-wrapper {
+        padding: 0 12px;
+        top: 8px;
+      }
+      .shell {
+        margin-top: 88px;
+      }
       iframe {
         height: 520px;
       }
@@ -217,14 +233,15 @@
 </head>
 
 <body>
-  <div class="shell">
-
-    <!-- STICKY BANNER HEADER -->
+  <!-- Fixed banner sitting above the main shell -->
+  <div class="banner-wrapper">
     <header class="banner-header">
       <div class="banner-title">Interactive Math, Systems & AI Visualizations</div>
       <div class="banner-sub">JJ Vahedi – Research & Modeling Playground</div>
     </header>
+  </div>
 
+  <div class="shell">
     <main>
       <div class="section-label">Graphs</div>
 
@@ -251,7 +268,7 @@
             <span class="chip">Tokenization</span>
             <span class="chip">Context windows</span>
           </div>
-          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en" 
+          <a href="https://www.desmos.com/calculator/0a825fed28?lang=en"
              target="_blank">Open in Desmos ↗</a>
         </div>
       </section>
