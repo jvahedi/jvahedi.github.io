@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Interactive Math & Systems Visualizations – JJ Vahedi</title>
+  <title>Interactive Math & Systems Visualizations – John Vahedi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -242,7 +242,9 @@
 
   <div class="shell">
     <main>
-      <div class="section-label">LLM Systems & Probabilities</div>
+
+      <!-- SECTION 1: Internal Mechanics of AI Systems -->
+      <div class="section-label">Internal Mechanics of AI Systems</div>
 
       <!-- 1) LLM Chunking & Overlap Tradeoffs -->
       <section id="llm-chunking" class="graph-card">
@@ -344,7 +346,8 @@
         </div>
       </section>
 
-      <div class="section-label">Transforms, Sampling & Performance</div>
+      <!-- SECTION 2: Transformations & Intuition-Building -->
+      <div class="section-label">Transformations & Intuition-Building</div>
 
       <!-- 4) Finite-Interval S-Curve -->
       <section id="finite-s-curve" class="graph-card">
@@ -381,7 +384,44 @@
         </div>
       </section>
 
-      <!-- 5) Itemization Sampling -->
+      <!-- 5) 3D Radial Contraction -->
+      <section id="radial-contraction-3d" class="graph-card">
+        <div class="graph-header">
+          <div class="graph-title">3D Radial Contraction Toy Model</div>
+          <div class="graph-meta">
+            <span>Interactive Desmos 3D graph</span>
+            <span>Ellipsoids · exponents · radial scaling</span>
+          </div>
+        </div>
+
+        <div class="graph-body">
+          A 3D toy model that deforms an ellipsoid via radial scaling and
+          exponents. Parameters control the axes and contraction powers,
+          producing different “pinched” or stretched shapes. It’s mostly
+          for geometric intuition and play around smooth nonlinear
+          transformations in three dimensions.
+        </div>
+
+        <iframe
+          src="https://www.desmos.com/3d/a82d7555b4?lang=en"
+          title="3D Radial Contraction"
+        ></iframe>
+
+        <div class="graph-footer">
+          <div class="tag-chips">
+            <span class="chip">3D geometry</span>
+            <span class="chip">Radial scaling</span>
+            <span class="chip">Transform</span>
+          </div>
+          <a href="https://www.desmos.com/3d/a82d7555b4?lang=en"
+             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Systems, Sampling & Failure Modes -->
+      <div class="section-label">Systems, Sampling & Failure Modes</div>
+
+      <!-- 6) Itemization Sampling -->
       <section id="itemization-sampling" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Itemization Sampling Model</div>
@@ -414,7 +454,7 @@
         </div>
       </section>
 
-      <!-- 6) Server Decision Tool -->
+      <!-- 7) Server Decision Tool -->
       <section id="server-decision" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Server vs Local Execution Decision Tool</div>
@@ -448,9 +488,10 @@
         </div>
       </section>
 
-      <div class="section-label">Geometry & Toy Models</div>
+      <!-- SECTION 4: Mathematical Play & Structural Curiosity -->
+      <div class="section-label">Mathematical Play & Structural Curiosity</div>
 
-      <!-- 7) Osculating Circle -->
+      <!-- 8) Osculating Circle -->
       <section id="osculating-circle" class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Osculating Circle & Curvature</div>
@@ -479,40 +520,6 @@
             <span class="chip">Calculus</span>
           </div>
           <a href="https://www.desmos.com/calculator/0159acbea5?lang=en"
-             target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
-        </div>
-      </section>
-
-      <!-- 8) 3D Radial Contraction -->
-      <section id="radial-contraction-3d" class="graph-card">
-        <div class="graph-header">
-          <div class="graph-title">3D Radial Contraction Toy Model</div>
-          <div class="graph-meta">
-            <span>Interactive Desmos 3D graph</span>
-            <span>Ellipsoids · exponents · radial scaling</span>
-          </div>
-        </div>
-
-        <div class="graph-body">
-          A 3D toy model that deforms an ellipsoid via radial scaling and
-          exponents. Parameters control the axes and contraction powers,
-          producing different “pinched” or stretched shapes. It’s mostly
-          for geometric intuition and play around smooth nonlinear
-          transformations in three dimensions.
-        </div>
-
-        <iframe
-          src="https://www.desmos.com/3d/a82d7555b4?lang=en"
-          title="3D Radial Contraction"
-        ></iframe>
-
-        <div class="graph-footer">
-          <div class="tag-chips">
-            <span class="chip">3D geometry</span>
-            <span class="chip">Radial scaling</span>
-            <span class="chip">Toy model</span>
-          </div>
-          <a href="https://www.desmos.com/3d/a82d7555b4?lang=en"
              target="_blank" rel="noopener noreferrer">Open in Desmos ↗</a>
         </div>
       </section>
