@@ -40,7 +40,7 @@
       margin: 0 auto 80px;
     }
 
-    /* Header banner */
+    /* Sticky header banner */
     header {
       padding: 20px 24px;
       border-radius: 16px;
@@ -127,12 +127,26 @@
       margin-bottom: 10px;
     }
 
-    iframe {
+    /* NEW: wrapper that scales the whole Desmos UI down */
+    .graph-frame-wrapper {
       width: 100%;
-      height: 600px;
+      height: 540px;                /* visible area */
+      overflow: hidden;
       border-radius: 14px;
       border: 1px solid rgba(148,163,184,0.5);
       background: #020617;
+      position: relative;
+    }
+
+    .graph-frame-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120%;                  /* oversize a bit so scaling doesn't leave gaps */
+      height: 120%;
+      border: 0;
+      transform: scale(0.85);       /* scale entire calculator, including expression list */
+      transform-origin: top left;
     }
 
     footer {
@@ -145,6 +159,18 @@
     footer a {
       color: var(--accent);
       text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 16px;
+      }
+      main {
+        grid-template-columns: 1fr;
+      }
+      .graph-frame-wrapper {
+        height: 480px;
+      }
     }
   </style>
 </head>
@@ -167,40 +193,57 @@
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">LLM Chunking & Overlap Tradeoffs</div>
-          <div class="graph-meta">Interactive Desmos graph<br>Tokenization · context windows</div>
+          <div class="graph-meta">
+            Interactive Desmos graph<br/>
+            Tokenization · context windows
+          </div>
         </div>
 
         <div class="graph-body">
           Visualization of chunk size, overlap, failure probability, and chunk count for LLM preprocessing.
         </div>
 
-        <iframe src="https://www.desmos.com/calculator/0a825fed28?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/calculator/0a825fed28?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
       <!-- Softmax -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Softmax, Temperature & Truncation</div>
-          <div class="graph-meta">Interactive Desmos graph<br>Top-p · sampling</div>
+          <div class="graph-meta">
+            Interactive Desmos graph<br/>
+            Top-p · sampling
+          </div>
         </div>
 
-        <p class="graph-body">Explore temperature, logits, and top-percent truncation behaviour.</p>
+        <p class="graph-body">
+          Explore temperature, logits, and top-percent truncation behaviour.
+        </p>
 
-        <iframe src="https://www.desmos.com/calculator/ac1941d5b9?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/calculator/ac1941d5b9?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
       <!-- Cosine -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Cosine Similarity Confidence Curve</div>
-          <div class="graph-meta">High-dim geometry · embeddings</div>
+          <div class="graph-meta">
+            Interactive Desmos graph<br/>
+            High-dim geometry · embeddings
+          </div>
         </div>
 
         <div class="graph-body">
           How surprising a cosine similarity value is in high dimensions.
         </div>
 
-        <iframe src="https://www.desmos.com/calculator/2e91e42c2f?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/calculator/2e91e42c2f?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
       <!-- SECTION 2 -->
@@ -209,19 +252,29 @@
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Finite-Interval S-Curve Transformation</div>
-          <div class="graph-meta">Bounded sigmoid mapping</div>
+          <div class="graph-meta">
+            Interactive Desmos graph<br/>
+            Bounded sigmoid mapping
+          </div>
         </div>
 
-        <iframe src="https://www.desmos.com/calculator/7a81eeeb3b?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/calculator/7a81eeeb3b?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">3D Radial Contraction Toy Model</div>
-          <div class="graph-meta">Nonlinear geometry</div>
+          <div class="graph-meta">
+            Interactive Desmos 3D graph<br/>
+            Nonlinear geometry
+          </div>
         </div>
 
-        <iframe src="https://www.desmos.com/3d/a82d7555b4?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/3d/a82d7555b4?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
       <!-- SECTION 3 -->
@@ -230,17 +283,29 @@
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Itemization Sampling Model</div>
+          <div class="graph-meta">
+            Interactive Desmos graph<br/>
+            Sampling · audits
+          </div>
         </div>
 
-        <iframe src="https://www.desmos.com/calculator/200d42fae9?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/calculator/200d42fae9?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Server vs Local Execution Tradeoff</div>
+          <div class="graph-meta">
+            Interactive Desmos graph<br/>
+            Speedup · overhead
+          </div>
         </div>
 
-        <iframe src="https://www.desmos.com/calculator/ab128b21ee?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/calculator/ab128b21ee?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
       <!-- SECTION 4 -->
@@ -249,9 +314,15 @@
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Osculating Circle Intuition Tool</div>
+          <div class="graph-meta">
+            Interactive Desmos graph<br/>
+            Curvature · differential geometry
+          </div>
         </div>
 
-        <iframe src="https://www.desmos.com/calculator/0159acbea5?lang=en&fontSize=13"></iframe>
+        <div class="graph-frame-wrapper">
+          <iframe src="https://www.desmos.com/calculator/0159acbea5?lang=en&fontSize=13"></iframe>
+        </div>
       </section>
 
     </main>
