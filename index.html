@@ -82,7 +82,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
       column-gap: 24px;
-      row-gap: 8px; /* tighter vertical spacing between rows */
+      row-gap: 8px;   /* tightened vertical spacing */
     }
 
     /*************************
@@ -94,7 +94,7 @@
       font-weight: 600;
       color: var(--accent);
 
-      margin: 18px 0 0;   /* more above, none below */
+      margin: 18px 0 0;   /* more above, zero below */
     }
 
     /**********************
@@ -150,7 +150,7 @@
      ****************************/
     .graph-frame-wrapper {
       width: 100%;
-      height: 520px;
+      height: 480px;   /* <<< SHORTER WINDOW */
       overflow: hidden;
       border-radius: 14px;
       border: 1px solid rgba(148,163,184,0.5);
@@ -192,7 +192,7 @@
         height: 85px;
       }
       main { grid-template-columns: 1fr; }
-      .graph-frame-wrapper { height: 480px; }
+      .graph-frame-wrapper { height: 450px; }
     }
   </style>
 </head>
