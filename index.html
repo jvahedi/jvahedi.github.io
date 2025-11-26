@@ -58,21 +58,21 @@
 
     header p { color: var(--muted); font-size: 0.9rem; }
 
-    /* Wider two-column grid */
+    /* Two-column layout */
     main {
       margin-top: 20px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
-      gap: 26px;
+      gap: 24px;
     }
 
-    /* UPDATED: ultra-tight spacing */
+    /* ★ Balanced tighter spacing ★ */
     .section-label {
       grid-column: 1 / -1;
       font-size: 1.15rem;
       font-weight: 600;
       color: var(--accent);
-      margin: 10px 0 4px;   /* tighter spacing */
+      margin: 12px 0 6px;   /* perfect tightness */
     }
 
     .graph-card {
@@ -99,7 +99,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 8px; /* slightly tighter too */
+      margin-bottom: 8px;
     }
 
     .graph-title { font-size: 1rem; font-weight: 600; }
@@ -116,10 +116,10 @@
       margin-bottom: 10px;
     }
 
-    /* Height 520 + scale 0.75 */
+    /* Scaled Desmos wrapper */
     .graph-frame-wrapper {
       width: 100%;
-      height: 520px;
+      height: 520px;        /* shorter */
       overflow: hidden;
       border-radius: 14px;
       border: 1px solid rgba(148,163,184,0.5);
@@ -169,16 +169,17 @@
 
     <main>
 
-      <!-- ALL CONTENT BELOW REMAINS IDENTICAL -->
-      <!-- LLM chunking -->
       <div class="section-label">Internal Mechanics of AI Systems</div>
 
+      <!-- LLM chunking -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">LLM Chunking & Overlap Tradeoffs</div>
           <div class="graph-meta">Interactive Desmos graph<br/>Tokenization · context windows</div>
         </div>
-        <div class="graph-body">Visualization of chunk size, overlap, failure probability, and chunk count.</div>
+        <div class="graph-body">
+          Visualization of chunk size, overlap, failure probability, and chunk count.
+        </div>
         <div class="graph-frame-wrapper">
           <iframe src="https://www.desmos.com/calculator/0a825fed28?lang=en&fontSize=13"></iframe>
         </div>
@@ -202,7 +203,9 @@
           <div class="graph-title">Cosine Similarity Confidence Curve</div>
           <div class="graph-meta">Interactive Desmos graph<br/>Embeddings · geometry</div>
         </div>
-        <div class="graph-body">How surprising a cosine similarity value is in high-dimensional space.</div>
+        <div class="graph-body">
+          How surprising a cosine similarity value is in high-dimensional space.
+        </div>
         <div class="graph-frame-wrapper">
           <iframe src="https://www.desmos.com/calculator/2e91e42c2f?lang=en&fontSize=13"></iframe>
         </div>
@@ -221,7 +224,7 @@
         </div>
       </section>
 
-      <!-- 3D radial -->
+      <!-- 3D -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">3D Radial Contraction Toy Model</div>
@@ -234,7 +237,7 @@
 
       <div class="section-label">Systems, Sampling & Failure Modes</div>
 
-      <!-- Itemization sampling -->
+      <!-- Itemization -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Itemization Sampling Model</div>
@@ -258,7 +261,7 @@
 
       <div class="section-label">Mathematical Play & Structural Curiosity</div>
 
-      <!-- Osculating Circle -->
+      <!-- Osculating circle -->
       <section class="graph-card">
         <div class="graph-header">
           <div class="graph-title">Osculating Circle Intuition Tool</div>
