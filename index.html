@@ -31,11 +31,14 @@
       padding: 24px;
     }
 
-    .shell { max-width: 1400px; margin: 0 auto 80px; }
+    .shell {
+      max-width: 1400px;
+      margin: 0 auto 80px;
+    }
 
-    /* Sticky header */
+    /* FIXED header with no layout gap */
     header {
-      padding: 20px 24px;
+      padding: 18px 24px;
       border-radius: 16px;
       background: linear-gradient(135deg, rgba(79, 209, 197, 0.14), transparent),
                   radial-gradient(circle at top left, rgba(129, 140, 248, 0.18), transparent),
@@ -43,11 +46,20 @@
       border: 1px solid rgba(148, 163, 184, 0.35);
       box-shadow: var(--shadow-soft);
       text-align: center;
-      margin-bottom: 32px;
-      position: sticky;
-      top: 10px;
-      z-index: 20;
+
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
       backdrop-filter: blur(12px);
+
+      width: min(1400px, 100% - 48px);  /* align with body padding */
+    }
+
+    /* Spacer to push content below the fixed header once */
+    .header-spacer {
+      height: 110px;  /* adjust up/down to taste */
     }
 
     header h1 {
@@ -56,23 +68,26 @@
       margin-bottom: 4px;
     }
 
-    header p { color: var(--muted); font-size: 0.9rem; }
+    header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
     /* Two-column layout */
     main {
-      margin-top: 20px;
+      margin-top: 0;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
       gap: 24px;
     }
 
-    /* ★ Balanced tighter spacing ★ */
+    /* Tighter, but not cramped, section spacing */
     .section-label {
       grid-column: 1 / -1;
       font-size: 1.15rem;
       font-weight: 600;
       color: var(--accent);
-      margin: 12px 0 6px;   /* perfect tightness */
+      margin: 12px 0 6px;
     }
 
     .graph-card {
@@ -102,7 +117,10 @@
       margin-bottom: 8px;
     }
 
-    .graph-title { font-size: 1rem; font-weight: 600; }
+    .graph-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
 
     .graph-meta {
       text-align: right;
@@ -119,7 +137,7 @@
     /* Scaled Desmos wrapper */
     .graph-frame-wrapper {
       width: 100%;
-      height: 520px;        /* shorter */
+      height: 520px;
       overflow: hidden;
       border-radius: 14px;
       border: 1px solid rgba(148,163,184,0.5);
@@ -152,6 +170,14 @@
 
     @media (max-width: 720px) {
       body { padding: 16px; }
+      .shell { margin-bottom: 60px; }
+      header {
+        width: calc(100% - 32px);
+        top: 12px;
+      }
+      .header-spacer {
+        height: 100px;
+      }
       main { grid-template-columns: 1fr; }
       .graph-frame-wrapper { height: 480px; }
     }
@@ -166,6 +192,9 @@
       <h1>Interactive Math, Systems & AI Visualizations</h1>
       <p>John Vahedi – Research & Modeling Playground</p>
     </header>
+
+    <!-- spacer to keep content below the fixed header -->
+    <div class="header-spacer"></div>
 
     <main>
 
