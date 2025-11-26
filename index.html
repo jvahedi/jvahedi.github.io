@@ -66,12 +66,13 @@
       gap: 26px;
     }
 
+    /* UPDATED spacing: tighter section label margins */
     .section-label {
       grid-column: 1 / -1;
       font-size: 1.15rem;
       font-weight: 600;
       color: var(--accent);
-      margin: 26px 0 10px;
+      margin: 18px 0 6px;   /* smaller spacing above/below */
     }
 
     .graph-card {
@@ -101,10 +102,7 @@
       margin-bottom: 10px;
     }
 
-    .graph-title {
-      font-size: 1rem;
-      font-weight: 600;
-    }
+    .graph-title { font-size: 1rem; font-weight: 600; }
 
     .graph-meta {
       text-align: right;
@@ -118,15 +116,15 @@
       margin-bottom: 10px;
     }
 
-    /* Updated: scale 0.75 + taller wrapper */
+    /* UPDATED: height 520px + scale 0.75 */
     .graph-frame-wrapper {
-        width: 100%;
-        height: 520px;       /* NEW HEIGHT */
-        overflow: hidden;
-        border-radius: 14px;
-        border: 1px solid rgba(148,163,184,0.5);
-        background: #020617;
-        position: relative;
+      width: 100%;
+      height: 520px;        /* shorter window */
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: #020617;
+      position: relative;
     }
 
     .graph-frame-wrapper iframe {
@@ -136,7 +134,7 @@
       width: 140%;
       height: 140%;
       border: 0;
-      transform: scale(0.75);
+      transform: scale(0.75);   /* shrink everything */
       transform-origin: top left;
     }
 
@@ -155,7 +153,7 @@
     @media (max-width: 720px) {
       body { padding: 16px; }
       main { grid-template-columns: 1fr; }
-      .graph-frame-wrapper { height: 520px; }
+      .graph-frame-wrapper { height: 480px; }
     }
   </style>
 </head>
@@ -268,7 +266,7 @@
     </main>
 
     <footer>
-      Built with Desmos and curiosity — 
+      Built with Desmos and curiosity —
       <a href="https://www.linkedin.com/in/jvahedi">Connect on LinkedIn</a>.
     </footer>
 
